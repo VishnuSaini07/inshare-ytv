@@ -6,7 +6,14 @@ const routes = require('./routes/files')
 const routesShow = require('./routes/show')
 const download = require('./routes/download')
 const path = require('path')
+const cors = require('cors')
 connectDB();
+
+// Cors
+const corsOptions = {
+    origin: process.env.ALLOWED_CLIENTS.split(',')
+}
+app.use(cors(corsOptions))
 
 app.use(express.static('public'))
 app.use(express.json())
